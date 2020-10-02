@@ -2,7 +2,7 @@ import csv
 import json
 import os.path
 import statistics
-files = os.listdir('H:\\calc')
+files = os.listdir('H:\\calc') #Change firectory here
 files=sorted(files, key=lambda x: int(x.split(' ',2)[0]))
 
 HandledCtr=0
@@ -36,11 +36,11 @@ def CalcAve(ObjProp, data, printfile, printdata):
 
     
 
-with open(os.path.join('H:\\', 'diff.csv'), mode='w',newline='') as output:
+with open(os.path.join('H:\\', 'diff.csv'), mode='w',newline='') as output: #Change firectory here
     output_writer=csv.writer(output, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     output_writer.writerow(['FileName','road','sidewalk', 'building','wall','fence','pole','traffic light','traffic sign','vegetation','terrain','sky','person','rider','car','truck','bus','train','motorcycle','bicycle'])
     for FileName in files:
-        with open(os.path.join('H:\\calc', FileName)) as f:
+        with open(os.path.join('H:\\calc', FileName)) as f: #Change firectory here
             data.append(FileName)
             data.append(json.load(f))
         if len(data)==16:
