@@ -1,0 +1,42 @@
+import json
+from glob import glob
+import os.path
+import statistics
+
+pattern = os.path.join('H:\calc', '*.json')##别忘了  改路径
+
+HandledCtr=0
+data=[]
+
+def CalcAve(ObjProp, data, printfile, printdata):
+    List=[]
+    ave=0
+    for i in range(1,9,2):
+        if printfile:
+            print(data[i-1])
+        if ObjProp in data[i]:
+            if printdata:
+                print(ObjProp,data[i][ObjProp])
+            List.append(data[i][ObjProp])
+    if len(List)>0:
+        ave=statistics.mean(List)
+    return ave
+
+for FileName in glob(pattern):
+    with open(FileName) as f:
+          name=FileName.split('\\')[2]
+
+          data.append(name)
+          data.append(json.load(f))
+    if len(data)==8:
+        #print('Bus Average:',CalcAve('bus',data, True, False))
+        #print('Vegetation Average:',CalcAve('vegetation',data, False, False))
+        #print('Pole Average:',CalcAve('pole',data, False, False))
+        #遵循这个格式：CalcAve（‘数据名’，data，显示文件名？，显示数值？）
+        print('Building Average:,',CalcAve('building',data, True, False))
+        
+        data.clear()#在这之前插入print
+        HandledCtr+=1
+print('已处理',HandledCtr,'组图片')
+
+    
