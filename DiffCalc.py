@@ -2,7 +2,7 @@ import csv
 import json
 import os.path
 import statistics
-files = os.listdir('H:\\calc') #Change firectory here
+files = os.listdir('H:\\calc') #Change directory here
 files=sorted(files, key=lambda x: int(x.split(' ',2)[0]))
 
 HandledCtr=0
